@@ -62,10 +62,11 @@
 <script setup lang="ts">
 import { useAuthStore } from '../../stores/auth'
 import { computed, ref } from 'vue'
-import router from '../../router/index'
+import {useRouter} from 'vue-router'
 
 // create store
 const authStore = useAuthStore()
+const router = useRouter()
 
 const loginStatus = computed(() => {
   return authStore.isLoggedIn
@@ -75,7 +76,7 @@ const loginStatus = computed(() => {
 
 function logout() {
   authStore.logout()
-  router.push('/login')
+  router.push('/')
 }
 
 function login() {

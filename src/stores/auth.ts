@@ -50,7 +50,6 @@ export const useAuthStore = defineStore('authStore', {
       password: string,
     ): Promise<void> {
       const alertStore = useAlertStore()
-      const router = useRouter()
       try {
         const response = await axios.post(`${baseUrl}/signup`, {
           firstname,
@@ -62,13 +61,11 @@ export const useAuthStore = defineStore('authStore', {
         if (response && response.data) {
           // Check if the response has the expected structure
           console.log(response)
-          router.push('/login')
           alertStore.success('Registered successfully')
         } else {
           alertStore.error('Unexpected response format')
         }
       } catch (error: any) {
-        router.push('/login')
         alertStore.error(error.response.data)
       }
     },

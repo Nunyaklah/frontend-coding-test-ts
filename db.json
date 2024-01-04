@@ -34,6 +34,13 @@
       "firstname": "sarah",
       "lastname": "doh",
       "id": 5
+    },
+    {
+      "email": "raf@mail.com",
+      "password": "$2a$10$YB4J0egDmHuGjYlhAkIfluZ0MmegDMyZ5G9x3WW76H30bvDFdFL5S",
+      "firstname": "raf",
+      "lastname": "till",
+      "id": 6
     }
   ]
 }

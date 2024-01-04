@@ -19,7 +19,7 @@
             Sign Up for your account
           </h1>
           <Form
-            @submit="signup"
+            @submit="handleSignup"
             :validation-schema="schema"
             v-slot="{ errors }"
             class="space-y-4 md:space-y-6"
@@ -170,7 +170,7 @@ let email = ref('')
 let password = ref('')
 let confirmPassword = ref('')
 
-function signup() {
+function handleSignup() {
   authStore.signup(firstname.value, lastname.value, email.value, password.value)
   router.push('/login')
 }
