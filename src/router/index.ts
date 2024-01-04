@@ -5,6 +5,7 @@ import {
   Router,
   RouteRecordRaw,
 } from 'vue-router'
+import { useAuthStore } from '../stores/auth'
 import LayoutMain from '../components/layout/LayoutMain.vue'
 import Error from '../views/Error.vue'
 import Home from '../views/Home.vue'
@@ -62,6 +63,22 @@ export default function initializeRouter(app: App): Router {
   const router: Router = createRouter({
     history: createWebHistory(),
     routes,
+  })
+
+  const authStore = useAuthStore()
+
+  // Add a router guard
+  router.beforeEach(async (to, from, next) => {
+    const publicPages: string[] = ['/login', '/signup', '/']
+    const authRequired: boolean = !publicPages.includes(to.path)
+
+    if (authRequired && !authStore.token) {
+      // Redirect to the login page if the user is not authenticated
+      next({ name: 'Login' })
+    } else {
+      // Continue to the requested route
+      next()
+    }
   })
 
   app.use(router)

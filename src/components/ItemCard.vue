@@ -1,5 +1,8 @@
 <template>
-  <div class="p-3 rounded-md bg-white shadow-md h-full text-center">
+  <div class="p-3 rounded-md bg-white shadow-md h-full text-center relative">
+    <i
+      class="ri-heart-2-line text-right absolute right-4 text-2xl text-red-400"
+    ></i>
     <img :src="item.image" alt="item thumb" class="thumb" />
     <p class="font-bold text-gray-500 m-4 truncate">{{ item.title }}</p>
     <router-link :to="`/shop/item/${item.id}`">
@@ -8,13 +11,13 @@
       >
         <p class="font-semibold">View Item</p>
         <i class="ri-eye-line ml-4 text-lg"></i>
-        <i class="ri-shopping-cart-2-line  ml-4 text-lg"></i>
+        <i class="ri-shopping-cart-2-line ml-4 text-lg"></i>
       </div>
     </router-link>
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 const { item } = defineProps(['item'])
 import 'remixicon/fonts/remixicon.css'
 </script>

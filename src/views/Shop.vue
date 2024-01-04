@@ -18,40 +18,26 @@
 import axios from 'axios'
 import { ref, onMounted } from 'vue'
 import ItemCard from '../components/ItemCard.vue'
+import Item from '../types/item'
+import { useAlertStore } from '../stores/alerts'
 
-// Define the type for the items variable
-interface Item {
-  id: number
-  title: string
-  description: string
-  price: number
-  image: string
-  // Add other properties as needed based on the API response
-}
-
-// Define a reactive variable to store the API response
 const items = ref<Item[]>([])
+const alertStore = useAlertStore()
 
-// Function to fetch data from the API
 const fetchData = async () => {
   try {
-    // Make a GET request to the API
     const response = await axios.get<Item[]>(
       'https://fakestoreapi.com/products',
     )
 
-    // Assign the response data to the 'items' variable
     items.value = response.data
 
-    // Optionally, log the items to the console
-    console.log('Items:', items.value)
+    alertStore.success('Succesfully fetched shop items')
   } catch (error: any) {
-    // Handle errors here
-    console.error('Error fetching data:', error.message)
+    alertStore.error('Error fetching data:', error.message)
   }
 }
 
-// Call the fetchData function when the component is mounted
 onMounted(() => {
   fetchData()
 })

@@ -19,12 +19,37 @@
               >
               <router-link
                 to="/shop"
-                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"  
+                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >Shop Here !</router-link
               >
             </div>
-          
           </div>
+        </div>
+        <div class="flex md:order-2">
+          <p
+            class="self-center text-xl font-semibold whitespace-nowrap mr-14"
+            v-if="loginStatus"
+          >
+            Welcome, {{ authStore.firstname + ' ' + authStore.lastname }}
+          </p>
+          <button
+            type="button"
+            class="text-black font-bold bg-white hover:bg-gray-800 focus:ring-4 focus:outline-none  rounded-lg text-sm px-10 py-4 text-center mr-3 md:mr-0"
+            data-cy="logout-btn"
+            @click.prevent="logout"
+            v-if="loginStatus"
+          >
+            Logout 🥲😭
+          </button>
+          <button
+            type="button"
+            class="text-black font-bold bg-white hover:bg-gray-800 focus:ring-4 focus:outline-none  rounded-lg text-sm px-10 py-4 text-center mr-3 md:mr-0"
+            data-cy="login-btn"
+            @click.prevent="login"
+            v-else
+          >
+            Login 🥰🤩
+          </button>
         </div>
       </div>
     </div>
@@ -33,3 +58,27 @@
     <router-view />
   </main>
 </template>
+
+<script setup lang="ts">
+import { useAuthStore } from '../../stores/auth'
+import { computed, ref } from 'vue'
+import router from '../../router/index'
+
+// create store
+const authStore = useAuthStore()
+
+const loginStatus = computed(() => {
+  return authStore.isLoggedIn
+})
+
+// let loginStatus = ref(authStore.isLoggedIn);
+
+function logout() {
+  authStore.logout()
+  router.push('/login')
+}
+
+function login() {
+  router.push('/login')
+}
+</script>

@@ -6,7 +6,9 @@
       </div>
       <div class="p-7 text-left">
         <h2 class="text-4xl my-7">{{ item.title }}</h2>
-        <p class="text-4xl font-extrabold   text-yellow-400 my-7">Price - ${{ item.price }}</p>
+        <p class="text-4xl font-extrabold text-yellow-400 my-7">
+          Price - ${{ item.price }}
+        </p>
         <h3 class="font-bold border-b-2 mb-4 text-lg pb-2">Item description</h3>
         <p class="mb-7 text-2xl font-semibold">{{ item.description }}</p>
         <button
@@ -24,43 +26,27 @@
 import axios from 'axios'
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
+import Item from '../types/item'
+import { useAlertStore } from '../stores/alerts'
 
-// Access the route object
 const route = useRoute()
+const alertStore = useAlertStore()
 
-// Define the type for the items variable
-interface Item {
-  id: number
-  title: string
-  description: string
-  price: number
-  image: string
-  // Add other properties as needed based on the API response
-}
-
-// Define a reactive variable to store the API response
 const item = ref<Item[]>([])
 
-// Function to fetch data from the API
 const fetchData = async () => {
   try {
-    // Make a GET request to the API
     const response = await axios.get<Item[]>(
       `https://fakestoreapi.com/products/${route.params.id}`,
     )
 
-    // Assign the response data to the 'items' variable
     item.value = response.data
-
-    // Optionally, log the items to the console
-    console.log('Items:', item.value)
+    alertStore.success('Succesfully  fetched item')
   } catch (error) {
-    // Handle errors here
-    console.error('Error fetching data:', error.message)
+    alertStore.error('Error fetching data:', error.message)
   }
 }
 
-// Call the fetchData function when the component is mounted
 onMounted(() => {
   fetchData()
 })
