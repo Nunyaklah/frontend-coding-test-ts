@@ -34,21 +34,21 @@
           </p>
           <button
             type="button"
-            class="text-black font-bold bg-white hover:bg-gray-800 focus:ring-4 focus:outline-none  rounded-lg text-sm px-10 py-4 text-center mr-3 md:mr-0"
+            class="text-black font-bold bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none rounded-lg text-sm px-10 py-3 text-center mr-3 md:mr-0"
             data-cy="logout-btn"
             @click.prevent="logout"
             v-if="loginStatus"
           >
-            Logout 🥲😭
+            Logout <i class="ri-logout-circle-line"></i>
           </button>
           <button
             type="button"
-            class="text-black font-bold bg-white hover:bg-gray-800 focus:ring-4 focus:outline-none  rounded-lg text-sm px-10 py-4 text-center mr-3 md:mr-0"
+            class="text-black font-bold bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none rounded-lg text-sm px-10 py-3 text-center mr-3 md:mr-0"
             data-cy="login-btn"
             @click.prevent="login"
             v-else
           >
-            Login 🥰🤩
+            Login <i class="ri-login-circle-line"></i>
           </button>
         </div>
       </div>
