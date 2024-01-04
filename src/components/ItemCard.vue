@@ -8,6 +8,7 @@
       >
         <p class="font-semibold">View Item</p>
         <i class="ri-eye-line ml-4 text-lg"></i>
+        <i class="ri-shopping-cart-2-line  ml-4 text-lg"></i>
       </div>
     </router-link>
   </div>

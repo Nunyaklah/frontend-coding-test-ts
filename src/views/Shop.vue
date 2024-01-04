@@ -1,7 +1,10 @@
 <template>
-  <div class="grid grid-cols-4 gap-5 m-10">
-    <div :key="item.id" v-for="item in items">
-      <ItemCard :item="item" />
+  <div>
+    <p class="mt-10 text-4xl font-bold">Take a look at our merch !</p>
+    <div class="grid grid-cols-4 gap-5 m-10">
+      <div :key="item.id" v-for="item in items">
+        <ItemCard :item="item" />
+      </div>
     </div>
   </div>
 </template>
