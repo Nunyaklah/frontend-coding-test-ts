@@ -15,39 +15,32 @@ describe('Shop.vue', () => {
     ]
     axios.get.mockResolvedValue({ data: mockData })
 
-    // Mount the component
+
     const wrapper = mount(Shop)
 
-    // Wait for the next tick to allow the asynchronous operation to complete
+   
     await wrapper.vm.$nextTick()
 
-    // Assert that the component renders correctly
     expect(wrapper.exists()).toBe(true)
 
-    // Check if the items are rendered correctly
     const itemCards = wrapper.findAllComponents(ItemCard)
     expect(itemCards).toHaveLength(mockData.length)
 
-    // Additional assertions as needed
-    // For example, you might want to check if specific data is rendered correctly
+   
     expect(itemCards[0].props('item')).toEqual(mockData[0])
     expect(itemCards[1].props('item')).toEqual(mockData[1])
   })
 
   it('handles data fetching error', async () => {
-    // Mock Axios to simulate an error
+   
     axios.get.mockRejectedValue(new Error('Failed to fetch data'))
 
-    // Mount the component
     const wrapper = mount(Shop)
 
-    // Wait for the next tick to allow the asynchronous operation to complete
     await wrapper.vm.$nextTick()
 
-    // Assert that the component renders correctly
     expect(wrapper.exists()).toBe(true)
-
-    // Check if the error message is displayed
+    
     expect(wrapper.find('.error-message').text()).toContain(
       'Failed to fetch data',
     )
