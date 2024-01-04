@@ -20,7 +20,7 @@ import { ref, onMounted } from 'vue'
 import ItemCard from '../components/ItemCard.vue'
 
 // Define the type for the items variable
-interface Product {
+interface Item {
   id: number
   title: string
   description: string
@@ -30,13 +30,13 @@ interface Product {
 }
 
 // Define a reactive variable to store the API response
-const items = ref<Product[]>([])
+const items = ref<Item[]>([])
 
 // Function to fetch data from the API
 const fetchData = async () => {
   try {
     // Make a GET request to the API
-    const response = await axios.get<Product[]>(
+    const response = await axios.get<Item[]>(
       'https://fakestoreapi.com/products',
     )
 
