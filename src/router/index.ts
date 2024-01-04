@@ -8,6 +8,10 @@ import {
 import LayoutMain from '../components/layout/LayoutMain.vue'
 import Error from '../views/Error.vue'
 import Home from '../views/Home.vue'
+import Login from '../views/Login.vue'
+import Signup from '../views/Signup.vue'
+import Shop from '../views/Shop.vue'
+import ItemDetail from '../components/ItemDetail.vue'
 
 const mainRoutes: RouteRecordRaw[] = [
   {
@@ -15,6 +19,16 @@ const mainRoutes: RouteRecordRaw[] = [
     name: 'Home',
     props: true,
     component: Home,
+  },
+  {
+    path: '/shop',
+    name: 'Shop',
+    component: Shop,
+  },
+  {
+    path: '/shop/item/:id',
+    name: 'ItemDetail',
+    component: ItemDetail,
   },
 ]
 
@@ -31,6 +45,16 @@ const routes: RouteRecordRaw[] = [
     props: true,
     component: LayoutMain,
     children: mainRoutes,
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login,
+  },
+  {
+    path: '/signup',
+    name: 'Sign Up',
+    component: Signup,
   },
 ]
 
