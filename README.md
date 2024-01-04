@@ -43,3 +43,9 @@ This is a simple feature that shows you a list of items in a shop and allows you
 
 
 ## A video showing what the application looks like in case there are installation challenges. Always available to help!!
+
+
+https://github.com/Nunyaklah/frontend-coding-test-ts/assets/20068694/cc0c984d-cbb6-49c6-b514-2a1577709edb
+
+
+
